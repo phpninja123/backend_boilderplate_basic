@@ -5,6 +5,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const compression = require('compression');
 const cors = require('cors');
 const config = require('./config/config');
+const router = require('./router');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(compression());
 // enable cors
 app.use(cors());
 app.options('*', cors());
+app.use("/api", router);
 
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {
